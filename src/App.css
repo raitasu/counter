@@ -1,38 +1,88 @@
 .App {
-  text-align: center;
+    display: flex;
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.counter {
+    width: 500px;
+    height: 300px;
+    border: 7px solid rebeccapurple;
+    border-radius: 20px;
+
+}
+.counterDisplay {
+    width: 400px;
+    height: 150px;
+    margin: 10px auto;
+    border: 5px solid rebeccapurple;
+    border-radius: 10px;
+    font-size: 100px;
+}
+.counterDisplayTrue {
+    width: 400px;
+    height: 150px;
+    margin: 10px auto;
+    border: 5px solid rebeccapurple;
+    border-radius: 10px;
+    font-size: 100px;
+    color: red;
+    font-weight: bold;
+}
+.counterButtons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 360px;
+    padding: 20px;
+    margin: 20px auto;
+    border: 5px solid rebeccapurple;
+    border-radius: 10px;
+
+}
+.setCounter {
+    width: 500px;
+    height: 300px;
+    border: 7px solid rebeccapurple;
+    border-radius: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+    width: 100px
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#someId {
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.setCounterDisplay {
+    width: 400px;
+    height: 150px;
+    margin: 10px auto;
+    border: 5px solid rebeccapurple;
+    border-radius: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rebeccapurple;
 }
 
-.App-link {
-  color: #61dafb;
+.setButton {
+    width: 360px;
+    padding: 20px;
+    margin: 20px auto;
+    border: 5px solid rebeccapurple;
+    border-radius: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.maxValue {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px auto;
 }
+.minValue {
+    display: flex;
+    justify-content: space-evenly;
+}
+

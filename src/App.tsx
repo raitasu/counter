@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
 import {UniversalButton} from "./components/UniversalButton";
 import {TextField} from "@mui/material";
@@ -16,13 +16,21 @@ function App() {
     const [maxValue, setMaxValue] = useState(defaultMaxValue)
     const [startValue, setStartValue] = useState(defaultStartValue)
 
-    const incCountHandler = () => {
-        if (count <= Number(localStorage.getItem('maxValue')) && count >= Number(localStorage.getItem('startValue'))) {
+    useEffect(()=>{
+        if(!localStorage.getItem('maxValue')) {
+           localStorage.setItem('maxValue', String(5))
+            localStorage.setItem('startValue', String(0))
+        }
+
+
+    },[])
+        const incCountHandler = () => {
+        if (count < Number(localStorage.getItem('maxValue')) && count >= Number(localStorage.getItem('startValue'))) {
             setCount(count + 1)
         }
     }
     const setCountHandler = () => {
-        setCount(0)
+        setCount(Number(localStorage.getItem('startValue')))
 
     }
     const onChangeMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +48,7 @@ function App() {
         localStorage.setItem('maxValue', String(maxValue))
         localStorage.setItem('startValue', String(startValue))
 
-        setCount(Number(localStorage.getItem('startValue')))
+        setCount(startValue)
     }
 
 
@@ -67,7 +75,7 @@ function App() {
                     </div>
                 </div>
                 <div className={'setButton'}>
-                    <UniversalButton title={'set'} callBack={setLocalStorageHandler}/>
+                    <UniversalButton title={'set'} callBack={setLocalStorageHandler} disable={maxValue === Number(localStorage.getItem('maxValue')) && startValue === Number(localStorage.getItem('startValue'))}/>
 
                 </div>
 

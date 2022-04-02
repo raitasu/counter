@@ -17,7 +17,7 @@ function App() {
     const [startValue, setStartValue] = useState(defaultStartValue)
 
     const incCountHandler = () => {
-        if (count <= Number(localStorageMaxValue) && count >= Number(defaultStartValue)) {
+        if (count <= Number(localStorage.getItem('maxValue')) && count >= Number(localStorage.getItem('startValue'))) {
             setCount(count + 1)
         }
     }

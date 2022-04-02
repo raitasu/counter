@@ -8,23 +8,21 @@ const localStorageStartValue = localStorage.getItem('startValue')
 
 const defaultStartValue = Number(localStorageStartValue) ? Number(localStorageStartValue) : 0
 const defaultMaxValue = Number(localStorageMaxValue) ? Number(localStorageMaxValue) : 5
-
-
 function App() {
 
     const [count, setCount] = useState<number>(defaultStartValue)
     const [maxValue, setMaxValue] = useState(defaultMaxValue)
     const [startValue, setStartValue] = useState(defaultStartValue)
+    const [isDisabled, setIsDisabled] = useState(false)
 
-    useEffect(()=>{
-        if(!localStorage.getItem('maxValue')) {
-           localStorage.setItem('maxValue', String(5))
+    useEffect(() => {
+        if (!localStorage.getItem('maxValue')) {
+            localStorage.setItem('maxValue', String(5))
             localStorage.setItem('startValue', String(0))
         }
+    }, [])
 
-
-    },[])
-        const incCountHandler = () => {
+    const incCountHandler = () => {
         if (count < Number(localStorage.getItem('maxValue')) && count >= Number(localStorage.getItem('startValue'))) {
             setCount(count + 1)
         }
@@ -33,10 +31,17 @@ function App() {
         setCount(Number(localStorage.getItem('startValue')))
 
     }
+
+
     const onChangeMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let minValue = e.currentTarget.value
-        // localStorage.setItem('minValue', minValue)
         setStartValue(Number(minValue))
+
+        if (Number(e.currentTarget.value) < 0) {
+            setIsDisabled(true)
+        } else {
+            setIsDisabled(false)
+        }
     }
     const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let maxValue = e.currentTarget.value
@@ -49,9 +54,10 @@ function App() {
         localStorage.setItem('startValue', String(startValue))
 
         setCount(startValue)
+
     }
 
-
+let disabled = maxValue === Number(localStorage.getItem('maxValue')) && startValue === Number(localStorage.getItem('startValue'))
     return (
         <div className="App">
             <div className={'counter'}>
@@ -75,7 +81,8 @@ function App() {
                     </div>
                 </div>
                 <div className={'setButton'}>
-                    <UniversalButton title={'set'} callBack={setLocalStorageHandler} disable={maxValue === Number(localStorage.getItem('maxValue')) && startValue === Number(localStorage.getItem('startValue'))}/>
+                    <UniversalButton title={'set'} callBack={setLocalStorageHandler}
+                                     disable={disabled || isDisabled}/>
 
                 </div>
 

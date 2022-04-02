@@ -8,6 +8,7 @@ const localStorageStartValue = localStorage.getItem('startValue')
 
 const defaultStartValue = Number(localStorageStartValue) ? Number(localStorageStartValue) : 0
 const defaultMaxValue = Number(localStorageMaxValue) ? Number(localStorageMaxValue) : 5
+
 function App() {
 
     const [count, setCount] = useState<number>(defaultStartValue)
@@ -57,7 +58,7 @@ function App() {
 
     }
 
-let disabled = maxValue === Number(localStorage.getItem('maxValue')) && startValue === Number(localStorage.getItem('startValue'))
+    let disabled = (maxValue === Number(localStorage.getItem('maxValue')) && startValue === Number(localStorage.getItem('startValue')))
     return (
         <div className="App">
             <div className={'counter'}>

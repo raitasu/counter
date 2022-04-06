@@ -15,7 +15,7 @@ function App() {
     const [maxValue, setMaxValue] = useState(defaultMaxValue)
     const [startValue, setStartValue] = useState(defaultStartValue)
     const [isDisabled, setIsDisabled] = useState(false)
-
+    const step = 1
     useEffect(() => {
         if (!localStorage.getItem('maxValue')) {
             localStorage.setItem('maxValue', String(5))
@@ -25,7 +25,7 @@ function App() {
 
     const incCountHandler = () => {
         if (count < Number(localStorage.getItem('maxValue')) && count >= Number(localStorage.getItem('startValue'))) {
-            setCount(count + 1)
+            setCount(count + step)
         }
     }
     const setCountHandler = () => {
